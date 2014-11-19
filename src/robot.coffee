@@ -109,17 +109,6 @@ class Robot
       regex.join("")
       modifiers
     )
-    #if @alias
-    #  
-    #  newRegex = new RegExp(
-    #    "^\\s*[@]?(?:#{alias}[:,]?|#{name}[:,]?)\\s*(?:#{pattern})"
-    #    modifiers
-    #  )
-    #else
-    #  newRegex = new RegExp(
-    #    "^\\s*[@]?(?:#{name}[:,]?|@)\\s*(?:#{pattern})",
-    #    modifiers
-    #  )
 
     @listeners.push new TextListener(@, newRegex, callback)
 
