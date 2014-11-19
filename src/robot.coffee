@@ -38,18 +38,18 @@ class Robot
   # name        - A String of the robot name, defaults to Hubot.
   #
   # Returns nothing.
-  constructor: (adapterPath, adapter, httpd, name = 'Hubot', alias = false) ->
+  constructor: (adapterPath, adapter, httpd, name = 'Hubot') ->
     @name      = name
     @events    = new EventEmitter
     @brain     = new Brain @
     @alias     = false
+    @symbol    = false
     @adapter   = null
     @Response  = Response
     @commands  = []
     @listeners = []
     @logger    = new Log process.env.HUBOT_LOG_LEVEL or 'info'
     @pingIntervalId = null
-    @alias     = alias
 
     @parseVersion()
     if httpd
@@ -103,8 +103,8 @@ class Robot
     if @alias
       alias = @alias.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
       regex[0] += "|#{alias}[:,]?"
-    if @trigger
-      regex[0] += "|#{@trigger}"
+    if @symbol
+      regex[0] += "|#{@symbol}"
     newRegex = new RegExp(
       regex.join("")
       modifiers

@@ -14,7 +14,7 @@ Switches = [
   [ "-d", "--disable-httpd",   "Disable the HTTP server" ],
   [ "-h", "--help",            "Display the help information" ],
   [ "-l", "--alias ALIAS",     "Enable replacing the robot's name with alias" ],
-  [ "-s", "--trigger TRIGGER", "Enable replacing the robot's name with a trigger character" ],
+  [ "-s", "--symbol SYMBOL",   "Enable replacing the robot's name with a symbol" ],
   [ "-n", "--name NAME",       "The name of the robot in chat" ],
   [ "-r", "--require PATH",    "Alternative scripts path" ],
   [ "-t", "--config-check",    "Test hubot's config to make sure it won't fail at startup"]
@@ -24,7 +24,7 @@ Switches = [
 Options =
   adapter:     process.env.HUBOT_ADAPTER or "shell"
   alias:       process.env.HUBOT_ALIAS   or false
-  trigger:     process.env.HUBOT_TRIGGER or false
+  symbol:      process.env.HUBOT_SYMBOL  or false
   create:      process.env.HUBOT_CREATE  or false
   enableHttpd: process.env.HUBOT_HTTPD   or true
   scripts:     process.env.HUBOT_SCRIPTS or []
@@ -53,9 +53,9 @@ Parser.on "alias", (opt, value) ->
   value or= '/'
   Options.alias = value
 
-Parser.on "trigger", (opt, value) ->
+Parser.on "symbol", (opt, value) ->
   value or= '/'
-  Options.alias = value
+  Options.symbol = value
 
 Parser.on "name", (opt, value) ->
   Options.name = value
