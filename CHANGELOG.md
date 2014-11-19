@@ -1,10 +1,4 @@
-v1.0.1
-======
-
-* Update README.md
-* Update package.json
-
-v1.0.0
+v2.9.4
 ======
 
 * Initial fork
