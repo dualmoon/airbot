@@ -93,6 +93,7 @@ else
     process.exit 0
 
   robot.alias = Options.alias
+  robot.symbol = Options.symbol
 
   loadScripts = ->
     scriptsPath = Path.resolve ".", "scripts"

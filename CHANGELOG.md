@@ -1,3 +1,8 @@
+v2.9.6
+======
+
+* Fix problem in bin/hubot
+
 v2.9.5
 ======
 
