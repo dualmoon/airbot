@@ -1,17 +1,20 @@
 {
-  "name": "hubot",
-  "version": "2.9.3",
+  "name": "airbot",
+  "version": "1.0.0",
 
-  "author": "hubot",
+  "author": "Ashley Luna <luna@airsi.de>",
 
   "keywords": [
     "github",
+    "dorfbot",
+    "airbot",
+    "airside",
     "hubot",
     "campfire",
     "bot"
   ],
 
-  "description": "A simple helpful robot for your Company",
+  "description": "A modification of Github's hubot",
 
   "licenses": [{
     "type": "MIT",
@@ -20,7 +23,7 @@
 
   "repository" : {
     "type": "git",
-    "url": "https://github.com/github/hubot.git"
+    "url": "https://github.com/dualmoon/airbot.git"
   },
 
   "dependencies": {

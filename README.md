@@ -1,6 +1,6 @@
-# Hubot
+# Airbot
 
-Hubot is a chat bot, modeled after GitHub's Campfire bot, hubot. He's pretty
+Airbot is a chat bot, modeled after GitHub's hubot. He's pretty
 cool. He's extendable with
 [old community scripts](https://github.com/github/hubot-scripts), or 
 [new community org](https://github.com/hubot-scripts/) and your own custom
