@@ -104,7 +104,8 @@ class Robot
       alias = @alias.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
       regex[0] += "|#{alias}[:,]?"
     if @symbol
-      regex[0] += "|#{@symbol}"
+      symbol = @symbol.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
+      regex[0] += "|#{symbol}"
     newRegex = new RegExp(
       regex.join("")
       modifiers
