@@ -14,6 +14,7 @@ Switches = [
   [ "-d", "--disable-httpd",   "Disable the HTTP server" ],
   [ "-h", "--help",            "Display the help information" ],
   [ "-l", "--alias ALIAS",     "Enable replacing the robot's name with alias" ],
+  [ "-s", "--trigger TRIGGER", "Enable replacing the robot's name with a trigger character" ],
   [ "-n", "--name NAME",       "The name of the robot in chat" ],
   [ "-r", "--require PATH",    "Alternative scripts path" ],
   [ "-t", "--config-check",    "Test hubot's config to make sure it won't fail at startup"]
@@ -23,6 +24,7 @@ Switches = [
 Options =
   adapter:     process.env.HUBOT_ADAPTER or "shell"
   alias:       process.env.HUBOT_ALIAS   or false
+  trigger:     process.env.HUBOT_TRIGGER or false
   create:      process.env.HUBOT_CREATE  or false
   enableHttpd: process.env.HUBOT_HTTPD   or true
   scripts:     process.env.HUBOT_SCRIPTS or []
@@ -51,6 +53,10 @@ Parser.on "alias", (opt, value) ->
   value or= '/'
   Options.alias = value
 
+Parser.on "trigger", (opt, value) ->
+  value or= '/'
+  Options.alias = value
+
 Parser.on "name", (opt, value) ->
   Options.name = value
 
@@ -70,7 +76,7 @@ unless process.platform is "win32"
     process.exit 0
 
 if Options.create
-  console.error "'hubot --create' is deprecated. Use the yeoman generator instead:"
+  console.error "'hubot --create' is depreated. Use the yeoman generator instead:"
   console.error "    npm install -g yo generator-hubot"
   console.error "    mkdir -p #{Options.path}"
   console.error "    yo hubot"

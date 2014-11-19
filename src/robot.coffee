@@ -38,7 +38,7 @@ class Robot
   # name        - A String of the robot name, defaults to Hubot.
   #
   # Returns nothing.
-  constructor: (adapterPath, adapter, httpd, name = 'Hubot') ->
+  constructor: (adapterPath, adapter, httpd, name = 'Hubot', alias = false) ->
     @name      = name
     @events    = new EventEmitter
     @brain     = new Brain @
@@ -49,6 +49,7 @@ class Robot
     @listeners = []
     @logger    = new Log process.env.HUBOT_LOG_LEVEL or 'info'
     @pingIntervalId = null
+    @alias     = alias
 
     @parseVersion()
     if httpd
@@ -97,18 +98,28 @@ class Robot
 
     pattern = re.join('/')
     name = @name.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
-
+    regex = ["^\\s*[@]?(?:#{name}[:,]?", ")\\s*(?:#{pattern})"]
+    
     if @alias
       alias = @alias.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')
-      newRegex = new RegExp(
-        "^\\s*[@]?(?:#{alias}[:,]?|#{name}[:,]?)\\s*(?:#{pattern})"
-        modifiers
-      )
-    else
-      newRegex = new RegExp(
-        "^\\s*[@]?#{name}[:,]?\\s*(?:#{pattern})",
-        modifiers
-      )
+      regex[0] += "|#{alias}[:,]?"
+    if @trigger
+      regex[0] += "|#{@trigger}"
+    newRegex = new RegExp(
+      regex.join("")
+      modifiers
+    )
+    #if @alias
+    #  
+    #  newRegex = new RegExp(
+    #    "^\\s*[@]?(?:#{alias}[:,]?|#{name}[:,]?)\\s*(?:#{pattern})"
+    #    modifiers
+    #  )
+    #else
+    #  newRegex = new RegExp(
+    #    "^\\s*[@]?(?:#{name}[:,]?|@)\\s*(?:#{pattern})",
+    #    modifiers
+    #  )
 
     @listeners.push new TextListener(@, newRegex, callback)
 
